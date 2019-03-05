@@ -22,3 +22,10 @@ Một dãy giá trị được xem như trong thứ tự không tăng nếu ph�
 
 `Thứ tự không giảm`
 Một dãy giá trị được xem như trong thứ tự không giảm nếu phần tử đứng sau lớn hơn hoặc bằng phần tử đứng trước. Ví dụ: 1, 5, 5, 6, 9. Loại thứ tự này xuất hiện khi trong một dãy có chứa các giá trị giống nhau.
+
+
+**Insertion sort**
+
+`why is Insertion sort best case big O complexity O(n)?`
+
+If the input list is already sorted, the inner loop will terminate immediately for any i, i.e. the number of computational steps performed ends up being proportional to the number of times the outer loop is performed, i.e. O(n).
