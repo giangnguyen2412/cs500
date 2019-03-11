@@ -72,4 +72,121 @@ think of work as the total energy consumed by a computation and span as the mini
 possible time that the computation requires. Regardless of whether computations are performed serially or in parallel, energy is equally required; time, however, is determined only
 by the slowest computation**
 
+## Genome Sequencing Problem
+### Shotgun method
+When we cut a genome into fragments we lose all the information
+about how the fragments should be assembled. If we had some additional information
+about how to assemble them, then we could imagine solving this problem. One way to get
+additional information on assembling the fragments is to make multiple copies of the original sequence and generate many fragments that overlap. Overlaps between fragments can
+then help relate and join them. This is the idea behind the shotgun (sequencing) method,
+which was the primary method used in sequencing the human genome for the first time.
 
+Example 3.2. For the sequence cattaggagtat, we produce three copies:
+
+`cattaggagtat`
+
+`cattaggagtat`
+
+`cattaggagtat`
+
+We then divide each into fragments
+
+`catt — ag — gagtat`
+
+`cat — tagg — ag — tat`
+
+`ca — tta — gga — gtat`
+
+Note how each cut is “covered” by an overlapping fragment telling us how to patch together the cut.
+
+Definition 3.4 (Shotgun Method). The shotgun method works as follows.
+
+1. Take a DNA sequence and make multiple copies.
+
+2. Randomly cut the sequences using a “shotgun” (in reality, using radiation or chemicals) into short fragments.
+
+3. Sequence each fragments (possibly in parallel).
+
+4. Reconstruct the original genome from the fragments.
+
+Remark. Steps 1–3 of the Shotgun Method are done in a wet lab, while step 4 is the algorithmically interesting component. Unfortunately it is not always possible to reconstruct the
+exact original genome in step 4. **For example, we might get unlucky and cut all sequences
+in the same location**. Even if we cut them in different locations, there can be many DNA
+sequences that lead to the same collection of fragments. A particularly challenging problem is repetition: there is no easy way to know if repeated fragments are actual repetitions
+in the sequence or if they are a product of the method itself.
+
+### Genome Sequencing Problem
+This section formulates the genome sequencing problem as an algorithmic problem.
+Recall that the using the Shotgun Method, we can construct and sequence short fragments
+made from copies of the original genome. Our goal is to use algorithms to reconstruct
+the original genome sequence from the many fragments by somehow assembling back the
+sequenced fragments. But there are many ways that such fragments can be assembled and
+we have no idea how the original genome looked like. So what can we do? **In some sense
+we want to come up with the “best solution” that we can, given the information that we
+have (the fragment sequences).**
+
+**Basic Terminology on Strings**. From an algorithmic perspective, we can treat a genome
+sequence just as a sequence made up of the four different characters representing nucleotides. To study the problem algorithmically, let’s review some basic terminology on
+strings.
+
+**Definition 3.5 (Superstring).** A string r is a superstring of another string s if s occurs in r
+as a contiguous block, i.e., s is a substring of r.
+
+-  `gtat is a superstring of gta and tat but not of tac`
+
+**Definition 3.6 (Substring, Prefix, Suffix).** A string s is a substring of another string r, if s
+occurs in r as a contiguous block. A string s is a prefix of another string r, if s is a substring
+starting at the beginning of r. A string s is a suffix of another string r, if s is a substring
+ending at the end of r.
+
+- `ag is a substring of ggag, and is also a suffix.`
+- `gga is a substring of ggag, and is also a prefix`
+
+**Definition 3.7 (Kleene Operators).** For any set Σ, its Kleene star Σ∗ is the set of all possible
+strings consisting of characters Σ, including the empty string.
+
+For any set Σ, its **Kleene plus** Σ+ is the set of all possible strings consisting of characters Σ,
+excluding the empty string.
+
+**Definition 3.8 (Shortest Superstring (SS) Problem).** Given an alphabet set Σ and a set of
+finite-length strings A ⊆ Σ∗, return a shortest string r that contains every x 2 A as a
+substring of r.
+
+**Genome Sequencing as a String Problem. **
+
+We can now try to understand the properties
+of the genome-sequencing problem.
+
+Exercise 3.1 (Properties of the Solution). What is a property that the result sequence needs
+to have in relation to the fragments sequenced in the Shotgun Method?
+
+Solution. Because the fragments all come from the original genome, the result should
+contain all of them. In other words, the result is a superstring of the fragments.
+
+Exercise 3.2. There can be multiple superstrings for any given set of fragments. Which
+superstrings are more likely to be the actual genome?
+
+**Solution. One possibly good solution is the shortest superstring. Because the Shotgun
+Method starts by making copies of the original sequence, by insisting on the shortest superstring, we would make sure that the duplicates would be eliminated. More specifically,
+if the original sequence had no duplicated fragments, then this approach would eliminate
+all the duplicates created by the copies that we made in the beginning.**
+
+## Algorithms for Genome Sequencing
+
+**Brute Force**
+
+Designing algorithms may appear to be an intimidating task, because it may seem as
+though we would need brilliant ideas that come out of nowhere. In reality, we design algorithms by starting with simple ideas based on several well-known techniques and refine
+them until the desired result is reached. Perhaps the simplest algorithm-design technique
+(and usually the least effective) is brute-force—i.e., try all solutions and pick the best.
+
+**Brute Force Algorithm 1. As applied to the genome-sequencing problem, a brute-force
+technique involves trying all candidate superstrings of the fragments and selecting the
+shortest one. Concretely, we can consider all strings x 2 Σ∗, and for each x check if every
+fragment is a substring. Although we won’t describe how here, such a check can be performed efficiently. We then pick the shortest x that is indeed a superstring of all fragments.**
+
+The problem with this brute-force algorithm is that there are an infinite number of strings
+in Σ∗ so we cannot check them all. But, we don’t need to: we only need to consider strings
+up to the total length of the fragments m, since we can easily construct a superstring by
+concatenating all fragments. Since the length of such a string is m, the shortest superstring
+has length at most m.
