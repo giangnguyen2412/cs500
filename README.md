@@ -171,7 +171,7 @@ Method starts by making copies of the original sequence, by insisting on the sho
 if the original sequence had no duplicated fragments, then this approach would eliminate
 all the duplicates created by the copies that we made in the beginning.**
 
-## Algorithms for Genome Sequencing
+### Algorithms for Genome Sequencing
 
 **Brute Force**
 
@@ -190,3 +190,13 @@ in Σ∗ so we cannot check them all. But, we don’t need to: we only need to c
 up to the total length of the fragments m, since we can easily construct a superstring by
 concatenating all fragments. Since the length of such a string is m, the shortest superstring
 has length at most m.
+
+## Set and relations
+
+A set is a collection of distinct objects. The objects that are contained in a set, are called members or the elements of the set. The elements of a set must be distinct: a set may not contain
+the same element more than once. The set that contains no elements is called the empty set.
+
+![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/set1.JPG "Set1")
+
+![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/set2.JPG "Set2")
+
