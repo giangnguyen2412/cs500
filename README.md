@@ -200,3 +200,13 @@ the same element more than once. The set that contains no elements is called the
 
 ![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/set2.JPG "Set2")
 
+## Graph Theory
+
+![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/graph1.JPG "Graph1")
+
+![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/graph2.JPG "Graph2")
+
+Remark. While directed graphs represent possibly asymmetric relationships, undirected
+graphs represent symmetric relationships. Directed graphs are therefore more general than
+undirected graphs because an undirected graph can be represented by a directed graph by
+replacing an edge with two arcs, one in each direction.
