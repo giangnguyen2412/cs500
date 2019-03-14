@@ -209,3 +209,45 @@ Remark. While directed graphs represent possibly asymmetric relationships, undir
 graphs represent symmetric relationships. Directed graphs are therefore more general than
 undirected graphs because an undirected graph can be represented by a directed graph by
 replacing an edge with two arcs, one in each direction.
+
+Example of disconnected graph:
+
+![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/graph3.jpg "Graph3")
+
+Definition 5.24 (Tree). An undirected graph is a **tree** if it does not have cycles and it is
+connected. A **rooted tree** is a tree with a distinguished root node that can be used to access
+all other nodes. An example of a rooted tree along with the associated terminology is given
+in below.
+
+Definition 5.25 (Rooted Trees). A **rooted tree** is a directed graph such that
+
+1. One of the vertices is the **root** and it has no in edges.
+
+2. All other vertices have one in-edge.
+
+3. There is a path from the root to all other vertices.
+
+Rooted trees are common structures in computing and have their own dedicated terminology.
+
+- By convention we use the term **node** instead of vertex to refer to the vertices of a
+rooted tree.
+
+- A node is a **leaf** if it has no out edges, and an **internal nod**e otherwise.
+
+- For each directed edge (u; v), u is the **parent** of v, and v is a **child** of u.
+
+- For each path from u to v (including the empty path with u = v), u is an **ancestor** of
+v, and v is a **descendant** of u.
+
+- For a vertex v, its depth is the **length** of the path from the root to v and its **height*** is
+the longest path from v to any leaf.
+
+- The **height of a tree** is the height of its root.
+
+- For any node v in a tree, the **subtree rooted** at v is the rooted tree defined by taking the
+induced subgraph of all vertices reachable from v (i.e. the vertices and the directed
+edges between them), and making v the root.
+
+- As with graphs, an **ordered rooted tree** is a rooted tree in which the out edges (children) of each node are ordered.
+
+![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/graph4.JPG "Graph4")
