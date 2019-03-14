@@ -1,5 +1,4 @@
-# Brief
-cs500 design and analysis of algorithm
+# CS500 design and analysis of algorithm
 
 **Giải thuật sắp xếp Adaptive và Non-Adaptive**
 
