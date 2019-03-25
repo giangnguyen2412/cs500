@@ -251,3 +251,59 @@ edges between them), and making v the root.
 - As with graphs, an **ordered rooted tree** is a rooted tree in which the out edges (children) of each node are ordered.
 
 ![alt text](https://github.com/yeulam1thienthan/cs500/blob/master/src/common/images/graph4.JPG "Graph4")
+
+## Sequences 
+
+### Intro
+
+If we were to identify the most fundamental ideas in computer science, we would probably
+end up converging on a list that includes data structures. Data structures organize data in
+a way that makes it possible for algorithms to work with the data quickly and efficiently.
+If computation were to be the “hammer” of computer science, “data” would be the “nail”.
+What is a hammer good for if there were no nails?
+
+It is
+possible to define sequences in several ways. One way is to use set theory. 
+
+Mathematically, a sequence is an enumerated collection. As with a set, a sequence has elements. The length of the sequence is the number of elements in the sequence.
+
+**Sequences allow for repetition: an element can appear at multiple positions**. The position
+of an element is called its rank or its index. Traditionally, the first element of the sequence
+is given rank 1, but, being computer scientists, we start at 0.
+
+We define a sequence as a function whose domain is a contiguous set of natural numbers
+starting at zero. This definition, stated more precisely below, allows us to specify the semantics of various operations on sequences succinctly.
+
+An α sequence is a mapping (function) from N to α with
+domain {0, ... , n − 1} for some n in N.
+
+Example 12.1. 
+
+Let A = {0; 1; 2; 3} and B = {’ a ’; ’ b ’; ’ c ’}. 
+
+The function
+
+R = {(0; ’ a ’); (1; ’ b ’); (3; ’ a ’)} from A to B has domain {0; 1; 3}. The function is not a sequence, because its domain has a
+gap because it lacks 2 as index. In a relation, we note that sometimes indexes can be written expicitly like {a0; a1; ... ; an−1} or equivalent to {(0; a0); (1; a1); ... ; ((n − 1); an−1)}.
+
+In contrast, The function
+Z = {(1; ’ b ’); (3; ’ a ’); (2; ’ a ’); (0; ’ a ’)} is a sequence. The first element of the sequence is ’ a ’ and thus has rank 0. The
+second element is ’ b ’ and has rank 1. The length of the sequence is 4.
+
+For the sequence a = { 2; 3; 5; 7; 11; 13; 17; 19; 23; 29 }, we have
+
+– a[0] = 2,
+
+– a[2] = 5, and
+
+– a[1 ... 4] = {3; 5; 7; 11}
+
+A Z => Z function sequence:
+<lambda x : x^2;
+
+lambda y : y + 2;
+
+lambda x : x − 4
+>.
+
+Here lambda is to define a function. For example, lambda x : x^2 is to define a function taking x as input and function definition is x^2
