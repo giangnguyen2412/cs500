@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper,oneside,microtype,nokorean]{oblivoir}
+\usepackage[margin=0.6in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\title{CS500 Quiz on Background}
+\author{Name (student id): Nguyen Van Giang (20184658) }
+\maketitle
+
+\noindent Use mathematical notations in your answer.
+
+\begin{problem}[0 pts]
+  Define the Cartesian product $A \times B$.
+\end{problem}
+\begin{proof}[Answer]
+  $A \times B = \{(a,b)~:~a \in A, b \in B\}$.
+\end{proof}
+
+
+\begin{problem}[10 pts]
+  Define ``set partition''.
+\end{problem}
+\begin{proof}[Answer]
+  Given a set $A$, a set $P$ is a \emph{partition} of $A$ if:
+  \begin{itemize}
+    \item if $ B \in \mathbb{P}$, then $B \neq \emptyset $,
+    \item if $ A = \bigcup_{B \in \mathbb{P}}B$, and
+    \item if $ B, C \in \mathbb{P}$, then $B = C$ or $B \cap C = \emptyset .$ 
+  \\
+  \\
+  \\
+  \end{itemize}
+\end{proof}
+
+
+\begin{problem}[10 pts]
+  Let $f: \{0,1,2\} \to \{0,1,2\}$ be a function for which $f(0) = 0, f(1) = 1, f(2) = 1$.  What are
+  the \emph{domain}, \emph{co-domain}, and \emph{range} of $f$?
+\end{problem}
+\begin{proof}[Answer]
+$Domain$, $co-domain$, and $range$ of $f$:
+  \begin{itemize}
+    \item $domain(f)$ = $\{0,1,2\}$
+    \item $co-domain(f)$ = $\{0,1,2\}$
+    \item $range(f)$ = $\{0,1\}$
+  \\ 
+  \\
+  \\
+  \end{itemize}
+\end{proof}
+
+
+\begin{problem}[50 pts]
+  Let $G = (V,E)$ be an undirected graph.
+
+  \begin{enumerate}
+  \item Define the set $Paths(G)$ of (possibly non-simple) paths of $G$.
+  \item Define the set $SimplPaths(G)$ of simple paths of $G$.  You can use $Paths(G)$ in your
+    answer.  (From now on, you can use the notion defined in an earlier sub-problem in a later one.)
+  \item Define the set $SimplCycles(G)$ of simple cycles of $G$.
+  \item Define the predicate $Connected(G)$.
+  \item Define the predicate $IsPartition(P, G)$, where $P$ is a set of undirected graphs.
+  \\
+  \\
+  \end{enumerate}
+\end{problem}
+\begin{proof}[Answer]
+Definitions:
+  \begin{enumerate}
+      \item $Paths(G)$ = $\{ p \in \mathbb{V^{+} \mid \forall{i} \in [ 0, \vert p \vert -1), \{ p_{i},p_{i+1} \} \in E \}$
+      \item $ SimplPaths(G)$ = $\{ p \in Paths(G) \mid \forall{i,j} \in [0, \vert p \vert)$, $p_{i} \neq p_{j}$ or $i = j$ or $\{i,j\} = \{ 0, \vert p \vert-1 \} \}$
+      \item $ SimplCycles(G)$ = $\{ p \in SimplPaths(G) \mid p_{0} = p_{\vert p \vert -1}\} $
+      \item $ Connected(G)$ = $ \forall{v,u} \in V$. $\exists{p} \in Paths(G) \mid p_{0} = u \land p_{\vert p \vert -1} = v $
+      \item $ IsPartition(P,G)$ = $ \exists{P_{V} $. ($P_{V}$ is a set partition of V) \land $P$ = {(V^{'},E^{'}) \mid V^{'} \in P_{V} \land E^{'} = \{\{a,b\} \in $E$ \mid a, b \in V^{'}\}\}$ 
+ 
+  \end{enumerate}
+\end{proof}
+
+
+\begin{problem}[30 pts]
+  Let $G$ be a tree rooted at $v_0$.  Suppose $G$ is \emph{represented as an undirected graph} (on
+  contrary to the textbook).
+
+  \begin{enumerate}
+  \item Define $Depth(G, v_0, v)$, where $v_0$'s depth is 0.
+  \item Define $Height(G, v_0)$.
+  \item Define $IsLeaf(G, v_0, v)$.
+  \end{enumerate}
+\end{problem}
+\begin{proof}[Answer]
+Definitions:
+  \begin{enumerate}
+    \item $ Depths(G, v_{0}, v)$ = $ Min_{p \in Paths(G)} (( p_{0} = v_{0} \land p_{\vert p \vert -1} = v)? \vert p \vert : \infty)$
+    \item $ Heights(G, v_{0})$= $ Max_{v \in $V$}(Depth(G, v_{0}, v))$
+    \item $ IsLeaf(G, v_{0}, v)$ = $ \forall{u} \in N_{G}(v), Depth(G, v_{0}, u) < Depth(G, v_{0}, v)$
+  \end{enumerate}
+\end{proof}
+
+
+\end{document}
