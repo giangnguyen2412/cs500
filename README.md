@@ -307,3 +307,112 @@ lambda x : x − 4
 >.
 
 Here lambda is to define a function. For example, lambda x : x^2 is to define a function taking x as input and function definition is x^2
+
+### Basic function
+
+**Definition 13.3** (Length and indexing). Given a sequence a, length a, also written jaj, returns the length of a. The function nth returns the element of a sequence at a specified
+index, e.g. nth a 2, written a[2], returns the element of a with rank 2. If the element demanded is out of range, the behavior is undefined and leads to an error.
+
+**Definition 13.4** (Empty and singleton). The value empty is the empty sequence, h i. The
+function singleton takes an element and returns a sequence containing that element, e.g.,
+singleton 1 evaluates to h 1 i.
+
+**Definition 13.5** (Functions isEmpty and isSingleton). To identify trivial sequences such as
+empty sequences and singular sequences, which contain only one element, the interface
+provides the functions isEmpty and isSingular. The function isEmpty returns true if the
+sequence is empty and false otherwise. The function isSingleton returns true if the
+sequence consists of a one element and false otherwise.
+
+**Definition 13.6 (Tabulate)**. The function tabulate takes a function f and an natural number
+n and produces a sequence of length n by applying f at each position. The function f can
+be applied to each element in parallel. 
+
+Example 13.1 (Fibonacci Numbers). Given the function fib i, which returns the i-th Fibonacci number, the expression:
+
+a = <fib i : 0 ≤ i < 9>
+
+is equivalent to
+a = tabulate fib 9:
+When evaluated, it returns the sequence
+
+a = <0; 1; 1; 2; 3; 5; 8; 13; 21; 34>.
+
+**Definition 13.8 (Map)**. The function map takes a function f and a sequence a and applies
+the function f to each element of a returning a sequence of equal length with the results.
+As with tabulate, in map, the function f can be applied to all the elements of the sequence
+in parallel.
+
+map (f : α ! β) <a1;...; an−1> : Sα) : Sβ = <f(a1);...; f(an−1)>
+
+**Definition 13.10 (Filter)**. The function filter takes a Boolean function f and a sequence a
+as arguments and applies f to each element of a. It then returns the sequence consisting
+exactly of those elements of s 2 a for which f(s) returns true, while preserving the relative
+order of the elements returned.
+
+filter isPrime <10,13,17,21> = <13,17>
+
+**Definition 13.12 (Subsequences)**. The subseq(a; i; j) function extracts a contiguous subsequence of a starting at location i and with length j. If the subsequence is out of bounds
+of a, only the part within a is returned.
+
+a[ei, ej] ≡ subseq (a; ei; ej − ei + 1):
+
+**Splitting sequences**. As we shall see in the rest of this book, many algorithms operate
+inductively on a sequence by splitting the sequence into parts, consisting for example, of
+the first element and the rest, a.k.a., the head and the tail, or the first half or the second
+half. We could define additional functions such as **splitHead, splitMid, take, and drop** for
+these purposes. Since all of these are easily expressible in terms of subsequences, we omit
+their discussion.
+
+**Definition 13.13 (Append)**. The function append (a; b) appends the sequence b after the
+sequence a. 
+
+ <1; 2; 3> ++ <4; 5>
+yields
+<1; 2; 3; 4; 5> 
+
+**Definition 13.14 (Flatten)**. To append more than two sequences the flatten a function takes
+a sequence of sequences and flattens them. For the input is a sequence a = h a1; a2; : : : ; an i,
+flatten returns a sequence whole elements consists of those of all the ai in order. We can
+specify flatten more precisely as follows
+
+flatten < < 1; 2; 3 > ; < 4 > ; h 5; 6>>
+
+yields
+
+<1; 2; 3; 4; 5; 6>
+
+**Definition 13.15 (Update).** The function update (a; (i; x)), updates location i of sequence a
+to contain the value x. If the location is out of range for the sequence, the function returns
+the input sequence unchanged.
+
+**Definition 13.16 (Inject)**. To update multiple positions at once, we can use inject. The
+function inject (a; b) takes a sequence b of location-value pairs and updates each location
+with its associated value. If a location is out of range, then the corresponding update is
+ignored. If multiple locations are the same, one of the updates take effect.
+In the case of duplicates in the update sequence b, i.e., multiple updates to the same position, we leave it unspecified which update takes effect. The function inject may thus treat
+duplicate updates **non-deterministically (mean there are multiple possible results of inject)**.
+
+**Definition 13.17 (Collect)**. Given a sequence of key-value pairs, the operation collect “collects” together all the values for a given key. This operation is quite common in data processing, and in relational database languages such as SQL it is referred to as “Group by”.
+
+The following sequence consists of key-value pairs each of which
+represents a student and the classes that they take.
+
+kv = <(’ jack ’; ’ 15210 ’); (’ jack ’; ’ 15213 ’)
+(’ mary ’; ’ 15210 ’); (’ mary ’; ’ 15213 ’); (’ mary ’; ’ 15251 ’);
+(’ peter ’; ’ 15150 ’); (’ peter ’; ’ 15251 ’);
+...
+>.
+
+We can determine the classes taken by each student by using collect cmp, where cmp is a
+comparison function for strings
+
+collect cmp kv = < (’ jack ’; < ’ 15210 ’; ’ 15213 ’; ...>)
+(’ mary ’; < ’ 15210 ’; ’ 15213 ’; ’ 15251 ’; ...>);
+(’ peter ’; < ’ 15150 ’; ’ 15251 ’; ...>);
+...
+>.
+
+Note that the output sequence is ordered based on the first instance of their key in the
+input sequences. Similarly, the order of the classes taken by each student are the same as
+in the input sequence.
+**Here, with a key, we collect all the value of the key and group them in form of a dictionary**
