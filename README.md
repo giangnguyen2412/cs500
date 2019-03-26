@@ -416,3 +416,21 @@ Note that the output sequence is ordered based on the first instance of their ke
 input sequences. Similarly, the order of the classes taken by each student are the same as
 in the input sequence.
 **Here, with a key, we collect all the value of the key and group them in form of a dictionary**
+
+**Reduction**. The term reduction refers to a computation that repeatedly applies an associative binary operation to a collection of elements until the result is reduced to a single
+value. Recall that associative operations are defined as operations that allow commuting
+the order of operations.
+
+Definition 13.19 (Assocative Function). A function f : α×α ! α is associative if f(f(x; y); z) =
+f(x; f(y; z)) for all x; y and z of type α.
+
+Example 13.9. Many functions are associative.
+Addition and multiplication on natural numbers are associative, with 0 and 1 as their
+identities, respectively.  Minimum and maximum are also associative with identities 1 and −1 respectively. The append function on sequences is associative, with identity being the empty sequence. The union operation on sets is associative, with the empty set as the identity. 
+
+Note. Associativity implies that when applying f to some values, the order in which the
+applications are performed does not matter. Associativity does not mean that you can
+reorder the arguments to a function (that would be commutativity).
+
+Important (Associativity of Floating Point Operations). Floating point operations are typically not associative, because performing them in different orders can lead to different
+results because of loss of precision.
