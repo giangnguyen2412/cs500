@@ -434,3 +434,7 @@ reorder the arguments to a function (that would be commutativity).
 
 Important (Associativity of Floating Point Operations). Floating point operations are typically not associative, because performing them in different orders can lead to different
 results because of loss of precision.
+
+## Difference between BFS and DFS
+
+https://techdifferences.com/difference-between-bfs-and-dfs.html
